@@ -5,6 +5,8 @@ on:
       - main
   workflow_dispatch: 
 
+env: 
+  ROOT_PATH: '${{ github.workspace }}/second-action-react-demo'
  
     
 jobs:
@@ -13,15 +15,13 @@ jobs:
     steps:
       - name: Get the Code from Repository
         uses: actions/checkout@v3
-        with:
-          repository: msdn2023/msdn101
-          path: second-action-react-demo
+        
       - name: Install NPM
         uses: actions/setup-node@v3
         with:
           node-version: 18
         
       - run: npm ci
-        working-directory: second-action-react-demo
+        working-directory: ${{env.ROOT_PATH}}
       - run: npm test
-        working-directory: second-action-react-demo
+        working-directory: ${{env.ROOT_PATH}}
