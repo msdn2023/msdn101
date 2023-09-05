@@ -10,18 +10,36 @@ env:
  
     
 jobs:
-  test-job:
+  Test-job:
     runs-on: ubuntu-latest
     steps:
       - name: Get the Code from Repository
         uses: actions/checkout@v3
-        
       - name: Install NPM
         uses: actions/setup-node@v3
         with:
           node-version: 18
-        
-      - run: npm ci
+      - name: Install Dependencies  
+        run: npm ci
         working-directory: ${{env.ROOT_PATH}}
-      - run: npm test
+      - name: Run tests
+        run: npm test
         working-directory: ${{env.ROOT_PATH}}
+
+  Deploy-job:
+    needs: Test-Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the Code from Repository
+        uses: actions/checkout@v3
+      - name: Install NPM
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies  
+        run: npm ci
+        working-directory: ${{env.ROOT_PATH}}
+      - name: Run Build Job
+        run: npm run build
+        working-directory: ${{env.ROOT_PATH}}
+  
