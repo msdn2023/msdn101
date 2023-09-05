@@ -18,7 +18,8 @@ jobs:
             
             - name: install dependencies
               run: npm ci      
+              working-directory: ${{env.project_path}} 
             
             - name: Lint test
               run: npm run lint  
-                
+              working-directory: ${{env.project_path}}     
