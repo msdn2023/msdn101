@@ -42,4 +42,3 @@ jobs:
       - name: Run Build Job
         run: npm run build
         working-directory: ${{env.ROOT_PATH}}
-  
