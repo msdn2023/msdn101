@@ -4,7 +4,7 @@ on:
     branches: 
       - main
   workflow_dispatch: 
-      
+     
 jobs:
   test-job:
     runs-on: ubuntu-latest
@@ -15,6 +15,6 @@ jobs:
           repository: msdn2023/msdn101
           path: second-action-react-demo
       - name: Install Dependencies
-        run: nmp ci
+        run: npm ci
       - name: Run Tests
         run: npm test          
