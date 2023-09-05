@@ -1,0 +1,20 @@
+name: Excercise 01 
+on: workflow_dispatch
+
+env:
+    project_path: '${{github.workspace}}/excercise-01'
+
+jobs:
+    lint-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout the code
+              uses: actions/checkout@v3
+            
+            - name: Install NPM
+              uses: actions/setup-node@v3
+              with:
+                node-version: 18
+            - name: Lint test
+              run: npm run lint  
+                
