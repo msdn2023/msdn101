@@ -7,4 +7,4 @@ jobs:
       - name: Print Greeting
         run: echo "This is my first workflow"
       - name: Print Bye
-        run: echo "See you in 2nd flow"
+        run: echo "See you in 2nd workflow"
