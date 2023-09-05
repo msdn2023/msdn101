@@ -1,0 +1,20 @@
+name: Test Project
+on: 
+  push:
+    branches: 
+      - main
+  workflow_dispatch: 
+      
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the Code from Repository
+        uses: actions/checkout@v3
+        with:
+          repository: msdn2023/msdn101
+          path: second-action-react-demo
+      - name: Install Dependencies
+        run: nmp ci
+      - name: Run Tests
+        run: npm test          
