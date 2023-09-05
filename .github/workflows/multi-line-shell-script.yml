@@ -1,0 +1,12 @@
+name: Multi-Line-Shell-Script
+on: workflow_dispatch
+jobs:
+    Multi-Line-Shell-Script:
+        runs-on: ubuntu-latest
+        steps:
+            - name: multiple shell script
+              run: |
+                echo "Hello World"
+                echo "Good Bye"
+       
+            
