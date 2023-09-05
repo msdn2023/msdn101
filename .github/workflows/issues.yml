@@ -1,0 +1,8 @@
+name: Handle Issues
+on: issues
+jobs:
+    github-issue-event:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Outpur Github Context
+              run: echo "${{toJson(github.event)}}"  
