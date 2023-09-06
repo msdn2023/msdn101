@@ -22,6 +22,14 @@ on:
         # or you can use paths parameter to execure this workflow if changes are made to any files in the folder
 #       path:
 #           - '.github/workflows/*'    
+# You can also skip the workflows run, you can use [] with commit message
+# [skip ci]
+# [ci skip]
+# [no ci]
+# [skip actions]
+# [actions skip]
+# Ex: git commit -m "added comments [skip actions]", this will make sure the workflow will not run
+
 
 jobs:
     event-activity-filter:
