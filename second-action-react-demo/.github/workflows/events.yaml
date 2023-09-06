@@ -11,5 +11,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: export the github events
-              run: echo "${{ github.event}}"
+              run: echo "${{ toJson(github.event)}}"
 
