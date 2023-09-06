@@ -1,0 +1,50 @@
+name: upload and download artifcats
+on: 
+  push:
+    branches: 
+      - main
+  workflow_dispatch: 
+
+env: 
+  ROOT_PATH: '${{ github.workspace }}/second-action-react-demo'
+ 
+    
+jobs:
+  Test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the Code from Repository
+        uses: actions/checkout@v3
+      - name: Install NPM
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies  
+        run: npm ci
+        working-directory: ${{env.ROOT_PATH}}
+      - name: Run tests
+        run: npm test
+        working-directory: ${{env.ROOT_PATH}}
+      - name: Run Build Job
+        run: npm run build
+        working-directory: ${{env.ROOT_PATH}}
+      - name: upload artifcats
+        uses: actions/upload-artifact@v3
+        with: 
+            name: my-artifacts
+            path: dist-folder
+#           path: |
+#               dist-folder
+#               package.json 
+  Deploy-job:
+    needs: Test-Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the build artifacts
+        uses: actions/download-artifact@v3
+        with:
+            name: my-artifcats  # same name as upload artifacts name 
+
+      - name: output the contents of the artifacts
+        run: ls -lr
+      # you can then build or deploy as per your need      
