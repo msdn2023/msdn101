@@ -5,7 +5,24 @@ on:
         # types:                # Or like this both will work...
         #     - opened
         #     - edited
-    workflow_dispatch:         # If you want to run the workflow manually    
+        branches: 
+            - main
+            - dev-*    # all branches start with dev- ex: dev-new, dev-new-001
+            - feat/** # this will work like feat/new, feat/new/help   
+
+    workflow_dispatch:         # If you want to run the workflow manually
+
+    push:
+        branches: 
+            - main
+            - dev-*    # all branches start with dev- ex: dev-new, dev-new-001
+            - feat/** # this will work like feat/new, feat/new/help
+        paths-ignore: 
+            - '.github/workflows/*'   # ignore the changes in this folder path and not execute the workflow
+        # or you can use paths parameter to execure this workflow if changes are made to any files in the folder
+#       path:
+#           - '.github/workflows/*'    
+
 jobs:
     event-activity-filter:
         runs-on: ubuntu-latest
