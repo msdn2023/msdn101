@@ -1,0 +1,15 @@
+name: Github Actions Events filter
+on:
+    pull_request: 
+        types: [opened, edited] # you can define the activity types like this or
+        # types:                # Or like this both will work...
+        #     - opened
+        #     - edited
+    workflow_dispatch:         # If you want to run the workflow manually    
+jobs:
+    event-activity-filter:
+        runs-on: ubuntu-latest
+        steps:
+            - name: export the github events
+              run: echo "${{ github.event}}"
+
